@@ -4,7 +4,7 @@ let login = {
 
     // Text
     $_text_heading   : 'Авторизация',
-    $_text_login     : 'Вход в систему FOI',
+    $_text_login     : 'Вход в систему',
     $_text_forgotten : 'Забыли пароль?',
 
     // Entry
