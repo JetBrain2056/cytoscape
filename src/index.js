@@ -14,7 +14,7 @@ let content = {
     logo               : './image/logo192.png',
     image              : './image/bigStar.png',
     shortIcon          : '',
-    name               : 'FOI',
+    name               : 'Cytoscape',
     Ent                : 'Enterprise',
     Dev                : 'Developer',
     about_program      : 'О программе...',
