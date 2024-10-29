@@ -1,0 +1,683 @@
+<div class="tab-content" id="tabContent">    
+  {# Work table #}
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"  tabindex="0">        
+      <div class="hv105" id="cy"></div>        
+  </div>   
+  {# Stations [0] #}
+  <div class="tab-pane fade" id="nav-stations" role="tabpanel" aria-labelledby="nav-stations-tab" tabindex="0">      
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#stationModal">
+          <i class="fa fa-plus-square"></i>
+          <span>{{ button_add }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#stationEditModal" onclick="station_modal()">
+          <i class="fa fa-pencil-square "></i>
+          <span>{{ button_edit }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="station_delete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button>
+      </div>
+    </div>
+    <div class="eva-form"></div>
+  </div>  
+  {# Lines [1] #}
+  <div class="tab-pane fade" id="nav-lines" role="tabpanel" aria-labelledby="nav-lines-tab" tabindex="0">      
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        {# <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#edgeModal">
+          <i class="fa fa-plus-square"></i>
+          <span>{{ button_add }}</span>
+        </button> #}
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#lineEditModal" onclick="line_modal()">
+          <i class="fa fa-pencil-square "></i>
+          <span>{{ button_edit }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="line_delete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button>        
+      </div>
+    </div>  
+    <div class="eva-form"></div>          
+  </div>  
+  {# Objects [2] #}
+  <div class="tab-pane fade" id="nav-objects" role="tabpanel" aria-labelledby="nav-objects-tab"  tabindex="0">
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        {# <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#objectsModal">
+          <i class="fa fa-pencil-square"></i>
+          <span>{{ button_edit }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="object_delete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button> #}
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="object_delete()">
+          <i class="fa fa-refresh"></i>
+          <span></span>
+        </button> 
+      </div>
+    </div>
+    <div class="eva-form"></div>
+  </div>
+  {# Units [3] #}
+  <div class="tab-pane fade" id="nav-units" role="tabpanel" aria-labelledby="units-tab" tabindex="0">      
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        {# <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#e">
+          <i class="fa fa-plus-square"></i>
+          <span>{{ button_add }}</span>
+        </button> #}
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#unitEditModal" onclick="unit_modal()">
+          <i class="fa fa-pencil-square "></i>
+          <span>{{ button_edit }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="unit_delete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button>        
+      </div>
+    </div>  
+    <div class="eva-form"></div>         
+  </div>  
+  {# Fibers Cables [4] #}
+  <div class="tab-pane fade" id="nav-edges" role="tabpanel" aria-labelledby="edges-tab" tabindex="0" aria-hidden="true">      
+    <div class="btn-toolbar gap-2" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#cableEditModal" onclick="cable_modal()">
+          <i class="fa fa-pencil-square "></i>
+          <span>Редактировать</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="cable_delete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button>             
+      </div>
+      <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-primary" onclick="fibers_modal()">Структура</button>   
+      </div>
+    </div>  
+    <div class="eva-form"></div>          
+  </div>   
+  {# Users [5] #}
+  <div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab"  tabindex="0">
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#userModal" onclick="userCreateModal()">
+          <i class="fa fa-user-plus"></i>
+          <span>{{ button_add }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-toggle="modal" data-bs-target="#userModal" onclick="userEditModal()">
+          <i class="fa fa-edit"></i>
+          <span>{{ button_edit }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="userDelete()">
+          <i class="fa fa-user-times"></i>
+          <span>{{ button_delete }}</span>
+        </button>    
+      </div>
+    </div>
+    <div class="eva-form"></div>
+  </div>   
+  {# Roles [6] #}
+  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">
+    <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#roleModal">
+          <i class="fa fa-plus-square"></i>
+          <span>{{ button_add }}</span>
+        </button>
+        <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="roleDelete()">
+          <i class="fa fa-minus-square"></i>
+          <span>{{ button_delete }}</span>
+        </button>
+      </div>
+    </div>           
+    <div class="eva-form"></div>  
+  </div>    
+</div>
+
+{# Modal station #}
+<div class="modal fade" id="stationModal" tabindex="-1" aria-labelledby="stationsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="stationsModalLabel">Создание станции</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form" >              
+            <label for="input-station-name">Наименование:</label>            
+            <div class="input-group">
+              <input type="text" name="station" value="" placeholder="Наименование станции" id="input-station-name" class="form-control"/>            
+            </div>            
+            <label for="input-station-descr">Номер линии метро:</label>
+            <div class="input-group">
+              <input type="text" name="descr" value="" placeholder="(0-9, А-Я)" id="input-station-descr" class="form-control"/>            
+            </div>  
+            <label for="input-x">x:</label>
+            <div class="input-group">
+              <input type="text" name="x" value="" placeholder="0" id="input-x" class="form-control"/>            
+            </div>  
+            <label for="input-y">y:</label>
+            <div class="input-group">
+              <input type="text" name="y" value="" placeholder="0" id="input-y" class="form-control"/>            
+            </div>             
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="station_create()" id="stationCreateBtn">{{ button_save }}</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal edit stations #}
+<div class="modal fade" id="stationEditModal" tabindex="-1" aria-labelledby="stationsEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="stationEditModalLabel">Редактирование станции</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form" >   
+            <label for="input-station-edit-kod">Код:</label>            
+            <div class="input-group">
+              <input type="text" name="kod" value="" placeholder="" id="input-station-edit-kod" class="form-control"/>            
+            </div>             
+            <label for="input-station-edit-name">Наименование:</label>            
+            <div class="input-group">
+              <input type="text" name="station" value="" placeholder="Наименование станции" id="input-station-edit-name" class="form-control"/>            
+            </div>            
+            <label for="input-station-descr">Номер линии метро:</label>
+            <div class="input-group">
+              <input type="text" name="descr" value="" placeholder="(0-9, А-Я)" id="input-station-edit-descr" class="form-control"/>            
+            </div>  
+            <label for="input-x">x:</label>
+            <div class="input-group">
+              <input type="text" name="x" value="" placeholder="0" id="input-edit-x" class="form-control"/>            
+            </div>  
+            <label for="input-y">y:</label>
+            <div class="input-group">
+              <input type="text" name="y" value="" placeholder="0" id="input-edit-y" class="form-control"/>            
+            </div>             
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="station_edit()">Сохранить</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal edit line #}
+<div class="modal fade" id="lineEditModal" tabindex="-1" aria-labelledby="lineEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lineEditModalLabel">Редактирование линии</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form" >              
+            <label for="input-line-edit-length">Длина линии, м.:</label>
+            <div class="input-group">
+              <input type="text" name="length" value="" placeholder="0" id="input-line-edit-length" class="form-control"/>            
+            </div>  
+            <label for="input-line-edit-descr">Описание:</label>
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-line-edit-descr" rows="3" maxlength="255" style="resize:true;"></textarea>
+            </div>                               
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="line_edit()">Сохранить</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal edit unit #}
+<div class="modal fade" id="unitEditModal" tabindex="-1" aria-labelledby="unitEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="unitEditModalLabel">Редактирование устройства</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form" >                 
+            <input class="form-control" type="text" id="input-unit-edit-id" disabled hidden>   
+            <label for="input-unit-edit-kod">Код:</label> 
+            <div class="input-group"> 
+              <input class="form-control" type="text" id="input-unit-edit-kod">  
+            </div>
+            <label for="input-unit-edit-parent">Родитель:</label> 
+            <div class="input-group">          
+              <input class="form-control" type="text" id="input-unit-edit-parentId" disabled hidden>    
+              <input class="form-control" type="text" id="input-unit-edit-parentKod" disabled hidden>   
+              <input class="form-control" type="text" id="input-unit-edit-parent" disabled>            
+              <button class="btn btn-outline-secondary" type="button" id="select-unit-edit-parent" onclick="unit_edit_parent()">...</button>
+            </div>  
+            <label for="input-unit-edit-name">Наименование:</label>            
+            <div class="input-group">
+              <input type="text" name="unit" value="" placeholder="Наименование устройства" id="input-unit-edit-name" class="form-control"/>            
+            </div>    
+            <label for="input-unit-edit-descr">Описание:</label>
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-unit-edit-descr" rows="3" maxlength="255" style="resize:true;"></textarea>
+            </div>             
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="unit_edit()">Сохранить</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal edit cable #}
+<div class="modal fade" id="cableEditModal" tabindex="-1" aria-labelledby="cableEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cableEditModalLabel">Редактирование оптоволоконной связи</h5>       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form" >      
+            <label for="input-line-edit-name">Код.:</label>
+            <div class="input-group">
+              <input type="text" name="name" value="" placeholder="" id="input-cable-edit-name" class="form-control"/>            
+            </div>        
+            <label for="input-cable-edit-source">Источник:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Source" id="input-cable-edit-source" class="form-control" disabled/>            
+            </div> 
+            <label for="input-cable-edit-target">Цель:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Target" id="input-cable-edit-target" class="form-control" disabled/>            
+            </div>                        
+            <label for="input-line-edit-fiber">Волокно, шт.:</label>
+            <div class="input-group">
+              <input type="text" name="fiber" value="" placeholder="0" id="input-cable-edit-fiber" class="form-control"/>            
+            </div>  
+            <label for="input-line-edit-length">Длина, м.:</label>
+            <div class="input-group">
+              <input type="text" name="length" value="" placeholder="0" id="input-cable-edit-length" class="form-control"/>            
+            </div>                          
+            <label for="input-cable-edit-descr" class="form-label">Описание:</label>            
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-cable-edit-descr" rows="3" maxlength="255" style="resize:true;"></textarea>
+            </div>                 
+          </form>  
+      </div>
+      <div class="modal-footer">   
+        <button type="submit" class="btn btn-primary" data-bs-target="fibersModal" onclick="fibers_modal()">Структура</button>       
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="cable_edit()">Сохранить</button>        
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >Закрыть</button>   
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Tab Fibers [7] #}
+<div class="modal modal-lg fade" id="fibersModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Структура оптоволоконной связи</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">          
+        <div class="btn-toolbar gap-2" role="toolbar" aria-label="toolbar group">
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="fiber_modal()">
+              <i class=""></i>
+              <span>{{ button_add }}</span>
+            </button>
+            <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" onclick="fiber_edit_modal()">
+              <i class=""></i>
+              <span>{{ button_edit }}</span>
+            </button>  
+            <button type="button" class="btn btn-primary d-flex gap-2 align-items-center" onclick="fiber_delete()">
+              <i class=""></i>
+              <span>{{ button_delete }}</span>
+            </button>    
+          </div>
+          <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-primary" onclick="showImage()">Рефлектограмма</button>   
+          </div>
+        </div>
+        <div class="eva-form"></div>          
+      </div>
+      {# <div class="modal-footer">       
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div> #}
+    </div>
+  </div>
+</div>
+{# Modal Add Fiber #}
+<div class="modal fade" id="addFiberModal"  tabindex="-1" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Добавить волокно</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form"  id="form-add-fiber">    
+            <label for="input-fiber-name">Код:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="" id="input-fiber-name" class="form-control"/>            
+            </div>             
+            <label for="input-source">Источник:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Source" id="input-source" class="form-control" disabled/>            
+            </div> 
+            <label for="input-target">Цель:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Target" id="input-target" class="form-control" disabled/>            
+            </div>            
+            <label for="input-source-port">Порт источника:</label>
+            <div class="input-group">
+              <input type="text" placeholder="0-9" id="input-source-port" class="form-control"/>  
+                <button class="btn btn-outline-secondary" type="button" onclick="fiber_edit_port()">O</button>           
+                <button class="btn btn-outline-secondary" type="button" onclick="fiber_select_port()">...</button>          
+            </div>  
+            <label for="input-target-port">Порт цели:</label>
+            <div class="input-group">
+              <input type="text" placeholder="0-9" id="input-target-port" class="form-control"/>  
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_edit_port()">O</button>           
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_select_port()">...</button>          
+            </div>   
+            <label>Рефлектограмма:</label>            
+            <div class="input-group form-control">
+              <div class="form-check">                
+                <input type="checkbox" id="input-fiber-reflect" class="form-check-input" disabled/>  
+                <label class="form-check-label" for="input-fiber-reflect">Наличие</label>
+              </div>
+              <div class="p-2 btn-group btn-group-sm">                     
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmLoad" onclick="">Загрузить</button>
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmDel" onclick="delFile()">Удалить</button>  
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmVeiw" onclick="">Просмотр</button>
+                <input type="file" style="display:none;" data-bs-target="modalRfmVeiw" />
+              </div>    
+            </div>  
+            <label for="input-fiber-descr">Описание:</label>            
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-fiber-descr" rows="1" maxlength="255" style="resize:true;"></textarea>
+            </div>  
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="fiber_create()">{{ button_save }}</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Edit Fiber #}
+<div class="modal fade" id="editFiberModal"  tabindex="-1" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Редактировать волокно</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <form class="form"  id="form-edit-fiber">    
+            <label for="input-edit-fiber-name">Код:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="" id="input-edit-fiber-name" class="form-control"/>            
+            </div>             
+            <label for="input-edit-source">Источник:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Source" id="input-edit-source" class="form-control" disabled/>            
+            </div> 
+            <label for="input-edit-target">Цель:</label>            
+            <div class="input-group">
+              <input type="text" placeholder="Target" id="input-edit-target" class="form-control" disabled/>            
+            </div>            
+            <label for="input-edit-source-port">Порт источника:</label>
+            <div class="input-group">
+              <input type="text" placeholder="0-9" id="input-edit-source-port" class="form-control"/>    
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_edit_source_port()">O</button>           
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_select_port()">...</button>   
+            </div>  
+            <label for="input-edit-target-port">Порт цели:</label>
+            <div class="input-group">
+              <input type="text" placeholder="0-9" id="input-edit-target-port" class="form-control"/>   
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_edit_target_port()">O</button>   
+              <button class="btn btn-outline-secondary" type="button" onclick="fiber_select_port()">...</button>            
+            </div>  
+            <label for="input-edit-fiber-reflect">Рефлектограмма:</label>            
+            <div class="input-group form-control">
+              <div class="form-check">                
+                <input type="checkbox" id="input-edit-fiber-reflect" class="form-check-input" disabled/>  
+                <label class="form-check-label" for="input-edit-fiber-reflect">Наличие</label>
+              </div>
+              <div class="p-2 btn-group btn-group-sm">                     
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmLoadEdit" onclick="">Загрузить</button>
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmDelEdit" onclick="delFile()">Удалить</button>  
+                <button type="button" class="btn btn-primary" data-bs-target="modalRfmVeiwEdit" onclick="">Просмотр</button>
+              </div>    
+            </div>                                        
+            <label for="input-edit-fiber-descr">Описание:</label>            
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-edit-fiber-descr" rows="1" maxlength="255" style="resize:true;"></textarea>
+            </div>  
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="fiber_edit()">{{ button_save }}</button>  
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Закрыть</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Edit Unit Parent [8] #}
+<div class="modal modal-lg fade" id="editUnitParentModal" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Выбор родителя устройства</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">          
+        <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">          
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-dismiss="modal" onclick="unit_select()">
+              <i class=""></i>
+              <span>Выбрать</span>
+            </button>    
+          </div>
+        </div>
+        <div class="eva-form"></div>          
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal User #}
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form" id="create-user-form">
+          <label for="input-user-name">Наименование:</label>
+          <div class="input-group">
+            <input type="text" placeholder="Name" id="input-user-name" class="form-control"/>
+          </div>
+          <label for="input-descr">Описание:</label>
+          <div class="input-group">
+            <input type="text" placeholder="Full name" id="input-descr" class="form-control"/>
+          </div>
+          <label for="input-role">Роль:</label>
+          <div class="input-group">            
+            <input type="text" id="input-role" class="form-control"/>
+            <button class="btn btn-outline-secondary" type="button" onclick="userEditRole()">...</button>
+          </div>
+          <label for="input-email">E-mail:</label>
+          <div class="input-group">            
+            <input type="email" placeholder="email@example.com" id="input-email" class="form-control"/>
+          </div>
+          <label for="input-password">Пароль:</label>
+          <div class="input-group">
+            <input type="password" placeholder="Password" id="input-password" class="form-control"/>
+          </div>
+          <label for="input-confirmpass">Подтверждение пароля:</label>
+          <div class="input-group">
+            <input type="password" placeholder="Password" id="input-confirmpass" class="form-control"/>
+          </div>
+          <label for="input-eauth">Отображать при входе:</label>
+          <div class="form-group">
+            <input type="checkbox" class="form-check-input" id="input-show" checked/>
+          </div>
+          <label for="input-eauth">Аутентификация:</label>
+          <div class="form-group">
+            <input type="checkbox" class="form-check-input" id="input-eauth" checked disabled/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="userCreate()">{{ button_save }}&{{ button_close }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Edit User Role [9] #}
+<div class="modal modal-lg fade" id="editUserRoleModal" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Выбор роли</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">          
+        <div class="btn-toolbar" role="toolbar" aria-label="toolbar group">          
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-primary d-flex gap-2 align-items-center eva-edit" data-bs-dismiss="modal" onclick="roleSelect()">
+              <i class=""></i>
+              <span>Выбрать</span>
+            </button>    
+          </div>
+        </div>
+        <div class="eva-form"></div>          
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div> 
+{# Modal Role #}
+<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="roleModalLabel">Добавить роль:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form" id="create-role-form">
+          <label for="input-rolename">Наименование:</label>
+          <div class="input-group">
+            <input type="text" placeholder="Name" id="input-rolename" class="form-control"/>
+          </div>                  
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="roleCreate()">{{ button_save }}&{{ button_close }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Port #}
+<div class="modal fade" id="portModal" tabindex="-2" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Редактировать порт</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">          
+          <form class="form" >                 
+            <input class="form-control" type="text" id="input-port-edit-id" disabled hidden>   
+            <label for="input-port-edit-kod">Код:</label> 
+            <div class="input-group"> 
+              <input class="form-control" type="text" id="input-port-edit-kod">  
+            </div>
+            {# <label for="input-port-edit-parent">Родитель:</label> 
+            <div class="input-group"> #}
+              <input class="form-control" type="text" id="input-port-edit-parentId" disabled hidden>  
+              {# <input class="form-control" type="text" id="input-port-edit-parentKod" disabled hidden>   
+              <input class="form-control" type="text" id="input-port-edit-parent" disabled>            
+              <button class="btn btn-outline-secondary" type="button" id="select-unit-edit-parent" onclick="port_edit_parent()">...</button>
+            </div>   #}
+            <label for="input-port-edit-name">Наименование порта:</label>            
+            <div class="input-group">
+              <input type="text" name="port" value="" placeholder="Наименование порта" id="input-port-edit-name" class="form-control"/>            
+            </div>   
+            <label for="input-port-edit-ip">IP порта:</label>            
+            <div class="input-group">
+              <input type="text" value="" placeholder="000.000.000.000" id="input-port-edit-ip" class="form-control"/>            
+            </div> 
+            <label for="input-port-edit-swbport">Порт коммутатора:</label>            
+            <div class="input-group">
+              <input type="text" value="" placeholder="" id="input-port-edit-swbport" class="form-control"/>            
+            </div>  
+            <label>Канал связи:</label> 
+            <div class="input-group input-group-sm form-control">
+              <div class="form-check form-check-inline"> 
+                <label class="form-check-label" for="input-port-tx">Tx</label>                
+                <input class="form-check-input" type="checkbox" value="" id="input-port-tx">           
+              </div>  
+              <div class="form-check form-check-inline"> 
+                <label class="form-check-label" for="input-port-rx">Rx</label>                          
+                <input class="form-check-input" type="checkbox" value="" id="input-port-rx">                                     
+              </div>                                               
+              <div class="input-group">  
+                <input class="input-group-text" type="text" value="" id="input-port-txtext" disabled> 
+                <input class="input-group-text" type="text" value="" id="input-port-rxtext" disabled>                               
+              </div>
+            </div>
+            <label for="input-port-edit-link">Link:</label>            
+            <div class="input-group">
+              <input type="text" value="" placeholder="" id="input-port-edit-link" class="form-control" disabled/>            
+            </div> 
+            <label for="input-port-edit-status">Status:</label>            
+            <div class="input-group">
+              <input type="text" value="" placeholder="" id="input-port-edit-status" class="form-control" disabled/>            
+            </div> 
+            <label for="input-port-edit-descr">Описание:</label>
+            <div class="input-group">              
+              <textarea  class="form-control" id="input-port-edit-descr" rows="2" maxlength="255" style="resize:true;"></textarea>
+            </div>             
+          </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="port_edit()">{{ button_save }}</button>        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+{# Modal Rfm Image #}
+<div class="modal modal-lg fade" id="showImage" tabindex="-1" aria-labelledby="showImageLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showImageLabel">Изображение</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <img id="imgRfm">
+      </div>
+    </div>
+  </div>
+</div>

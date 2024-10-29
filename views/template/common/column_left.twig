@@ -1,0 +1,96 @@
+<div id="column-left" class="hv135"> 
+  <form>
+    <h4 class="mb-1">Nodes</h4> 
+      <div class="input-group mb-2 input-group-sm">
+        <label class="input-group-text" for="Node_classes">Type node:&nbsp;</label>
+        <select class="form-select" id="Node_classes" onChange="select_node_classes()">
+          <option selected disabled>Select...</option>                              
+          <option value="unit">Unit (u)</option>  
+          <option value="node">Port (n)</option> 
+        </select>
+      </div>    
+      <div class="input-group mb-2 input-group-sm">
+        <label for="node_parent" class="input-group-text">Parent: </label>        
+        <input class="form-control" type="text" id="node_parentId" value="" disabled hidden>   
+        <input class="form-control" type="text" id="node_parent" value="" disabled>    
+        <button class="btn btn-outline-secondary" type="button" id="node_select" onclick="unit_edit_parent()">...</button>       
+      </div>   
+      <div class="input-group mb-1 input-group-sm">            
+        <label for="node_name" class="input-group-text">Name: </label>
+        <input type="text" class="form-control form-control-sm" id="node_name" value="">  
+      </div>
+      <div  class="mb-2">  
+        <label for= "node_descr" class="form-label mb-0">Description: </label>
+        <textarea  class="form-control" id="node_descr" rows="1" maxlength="255" style="resize:true;"></textarea>
+      </div>                        
+      <div class="form-group">               
+        <input type="button" id="AddNode" class="btn btn-primary btn-sm" value="Add" onclick="add_node()"/>
+        <input type="button" id="ModNode" class="btn btn-primary btn-sm" value="Save" onclick="mod_node()"/>              
+        <input type="button" id="CopyNode" class="btn btn-primary btn-sm" value="Copy" onclick="copy_node()"/>              
+        <input type="button" id="DelNode" class="btn btn-primary btn-sm" value="Del" onclick="delete_node()"/>
+      </div>
+  </form>
+  <hr class="line mb-1">           
+  <form>         
+    <h4 class="mb-1">Edges</h4>                   
+      <div class="input-group input-group-sm mb-2">
+        <label class="input-group-text" for="Edge_classes">Type:</label>
+        <select class="form-select" id="Edge_classes">   
+          <option selected disabled>Select...</option>                                        
+          <option value="patchcord">Patchcord</option> 
+          <option value="submagistral">Cable</option>    
+          {# <option value="magistral">магистральный кабель</option>                                                      #}
+        </select>
+         <label class="input-group-text" for="Edge_name">Kod:</label>
+         <input class="form-control" type="text" placeholder="" id="Edge_name" value="">  
+      </div>
+      <div class="input-group input-group-sm mb-2">
+        <label for="node_parent" class="input-group-text">Source:</label>        
+        <input class="form-control" type="text" placeholder="/" id="Edge_source" value="" disabled>  
+      </div>
+      <div class="input-group input-group-sm mb-2">
+        <label for="Edge_target" class="input-group-text">Target:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>        
+        <input class="form-control" type="text" placeholder="/" id="Edge_target" value="" disabled>  
+      </div>    
+      {# <div class="input-group input-group-sm mb-1">  
+        <label for= "edge_fiber"  class="input-group-text">Волокно, шт.:</label>
+        <input class="form-control form-control-sm" type="text" id="edge_fiber">
+        <label for= "edge_length"  class="input-group-text">Длина, м.:&nbsp;</label>
+        <input class="form-control form-control-sm" type="text" id="edge_length">
+      </div>    #}
+      <div class="mb-2">  
+        <label for= "edge_descr" class="form-label mb-0">Description: </label>
+        <textarea  class="form-control" id="edge_descr" rows="1" maxlength="255" style="resize:true;"></textarea>
+      </div>         
+      <div class="form-group">
+        <input type="button" id="AddEdge" class="btn btn-primary btn-sm" value="Add" onclick="add_edge()"/>
+        <input type="button" id="ModEdge" class="btn btn-primary btn-sm" value="Save" onclick="mod_edge()"/>  
+        <input type="button" id="DelEdge" class="btn btn-primary btn-sm" value="Del" onclick="delete_edge()"/>
+      </div>          
+  </form>                                    
+</div>
+{# Modal Add unit #}
+<div class="modal modal-lg fade" id="addUnit" tabindex="-1" aria-labelledby="showImageLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">                    
+        <h5 class="modal-title">Selected count ports of units.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>  
+      <div class="modal-body">  
+        <div class="form-group" style=" font-size: 18px">
+          <input type='radio' id='x0' name='unit_mode' checked value='on'> <label for='x0'>0</label>
+          <input type='radio' id='x16' name='unit_mode' value='off'> <label for='x16'>x16</label>              
+          <input type='radio' id='x32' name='unit_mode' value='off'> <label for='x32'>x32</label>              
+          <input type='radio' id='x48' name='unit_mode' value='off'> <label for='x48'>x48</label>              
+          <input type='radio' id='x64' name='unit_mode' value='off'> <label for='x64'>x64</label>              
+          <input type='radio' id='x96' name='unit_mode' value='off'> <label for='x96'>x96</label>              
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="addNodeExt()">Create</button>        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

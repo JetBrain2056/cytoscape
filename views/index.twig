@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang={{ lang }}>
+  <head>
+    <title>EVA.NET</title> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="height=device-height, width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    
+    <script src="./cytoscape/dist/cytoscape.min.js"></script>        
+    <script src="./popper/core/dist/umd/popper.min.js"></script>      
+    <script src="./cytoscape-popper/cytoscape-popper.js"></script>    	  
+	  {# <script src="./tippy.js/dist/tippy-bundle.umd.min.js"></script>  #}
+
+    <script defer src="./js/bootstrap.min.js"></script> 
+    <script defer src="./common.js"></script>     
+    <script defer src="./constraint-control.js"></script>            
+    <script defer src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+    {# <link href="{{ shortIcon }}"                      rel="icon" type="image/x-icon"> #}    
+    <link href="./css/bootstrap.min.css"                 rel="stylesheet">        
+    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./stylesheet/stylesheet.css"             rel="stylesheet">        
+  </head>
+  <body>                                 
+    <div class="content d-flex flex-column" data-logged={{logged}}> 
+        {% include "./template/common/header.twig" %}  
+        {% if logged %}                             
+          <div class="container-fluid d-flex flex-row flex-grow-1">                    
+            <div class="p-2 col-3" style="overflow-y: scroll">
+              {% include "./template/common/column_left.twig" %}
+            </div>
+            <div class="col" style="overflow-y: hidden">
+              {% include "./template/common/dashboard.twig" %}
+            </div>                    
+          </div>    
+          {% include "./template/common/footer.twig" %}                           
+        {% else %}                            
+          {% include "./template/common/login.twig" %}                            
+        {% endif %}          
+    </div>        
+  </body>
+</html>
