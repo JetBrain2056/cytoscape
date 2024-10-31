@@ -21,12 +21,10 @@
                   References
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">                 
-                  <div class="nav-item flex-column" aria-orientation="vertical">
-                    <button class="dropdown-item" id="nav-stations-tab" data-bs-toggle="tab" data-bs-target="#nav-stations" type="button" role="tab" aria-controls="nav-stations" aria-selected="false" onclick="show_station_table()">Станции</button>                    
-                    <button class="dropdown-item" id="nav-lines-tab"    data-bs-toggle="tab" data-bs-target="#nav-lines"    type="button" role="tab" aria-controls="nav-lines"    aria-selected="false" onclick="show_line_table()">Линии метро</button>                    
-                    <button class="dropdown-item" id="nav-objects-tab"  data-bs-toggle="tab" data-bs-target="#nav-objects"  type="button" role="tab" aria-controls="nav-objects"  aria-selected="false" onclick="show_object_table()">Объекты</button>
-                    <button class="dropdown-item" id="nav-units-tab"    data-bs-toggle="tab" data-bs-target="#nav-units"    type="button" role="tab" aria-controls="nav-units"    aria-selected="false" onclick="show_unit_table()">Устройства</button>                    
-                    <button class="dropdown-item" id="nav-edges-tab"    data-bs-toggle="tab" data-bs-target="#nav-edges"    type="button" role="tab" aria-controls="nav-users"    aria-selected="false" onclick="show_cable_table()">Оптоволоконные связи </button>                    
+                  <div class="nav-item flex-column" aria-orientation="vertical">                                        
+                    <button class="dropdown-item" id="nav-objects-tab"  data-bs-toggle="tab" data-bs-target="#nav-objects"  type="button" role="tab" aria-controls="nav-objects"  aria-selected="false" onclick="show_object_table()">Objects</button>
+                    <button class="dropdown-item" id="nav-units-tab"    data-bs-toggle="tab" data-bs-target="#nav-units"    type="button" role="tab" aria-controls="nav-units"    aria-selected="false" onclick="show_unit_table()">Units</button>                    
+                    <button class="dropdown-item" id="nav-edges-tab"    data-bs-toggle="tab" data-bs-target="#nav-edges"    type="button" role="tab" aria-controls="nav-users"    aria-selected="false" onclick="show_cable_table()">Edges</button>                    
                   </div>        
                 </ul>
               </li>       
@@ -35,13 +33,7 @@
                   Tools
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                  <div class="nav-item flex-column" aria-orientation="vertical">
-                    <button class="dropdown-item" id="nav-arm-tab" onclick="show_modal_arm()">АРМ</button>
-                    <hr class="dropdown-divider"></hr>
-                    <button class="dropdown-item" id="nav-export-tab" onclick="show_modal_export()">Экспорт</button>
-                    <button class="dropdown-item" id="nav-import-tab" onclick="show_modal_import()">Импорт</button>
-                    <button class="dropdown-item" id="nav-mimport-tab" onclick="mview_import()">M-View Загрузка</button>
-                    <hr class="dropdown-divider"></hr>
+                  <div class="nav-item flex-column" aria-orientation="vertical">                    
                     <button class="dropdown-item">Start</button>
                     <button class="dropdown-item">finish</button>
                     <button class="dropdown-item" id="clear">clear...</button>
@@ -104,56 +96,4 @@
     </div>
   </div>
 </div>
-{# Modal Import#}
-<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="importModalLabel">Импорт</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-        <h5>Upload Excel...</h5>
-        <br>
-        <form>
-          <div class="form-group form-control">
-            <label for="excelFile">Selected file:</label>
-            <input type="file" class="form-control-file" id="excelFile">
-          </div>
-          <label for="importStatus">Upload status:</label>
-          <input type="text"  class="form-control" id="importStatus" disabled>
-          <br>
-          <button type="button" class="btn btn-primary" onclick="handleFile()">Upload...</button>
-        </form>
-      </div>
-      </div>
-      {# <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{ button_close }}</button>
-      </div> #}
-    </div>
-  </div>
-</div>
-{# Modal Export#}
-<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exportModalLabel">Export</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-        <h5>Export Excel...</h5>
-        <br>
-        <form>
-          <button class="btn btn-primary" type="button" onclick="exportExcel()">Save...</button>
-        </form>
-      </div>
-      </div>
-      {# <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{ button_close }}</button>
-      </div> #}
-    </div>
-  </div>
-</div>
+
