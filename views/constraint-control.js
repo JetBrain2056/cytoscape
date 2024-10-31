@@ -378,7 +378,8 @@ function selectEnd(node) {
     $body.classList.remove('calc');
     clear();
     cy.endBatch();
-    return alert('Вы пытались создать начало и конец маршрута в одной точке.');
+    return 
+    // alert('Вы пытались создать начало и конец маршрута в одной точке.');
   }
   
   setTimeout(function() {
@@ -391,7 +392,8 @@ function selectEnd(node) {
       $body.classList.remove('calc');
       clear();
       cy.endBatch();
-      return alert('Вы пытались создать несуществующий маршрут.');
+      return 
+      // alert('Вы пытались создать несуществующий маршрут.');
     }
 
     cy.elements().not(aStar.path).addClass('not-path');
@@ -481,8 +483,6 @@ function checkIfOverlaps(node, padding) {
     let w = node.renderedOuterWidth();
     let h = node.renderedOuterHeight();
     let currentNodeBB = {
-        // w: node.renderedOuterWidth(),
-        // h: node.renderedOuterHeight(),
         x1: x - w / 2 - padding,
         x2: x + w / 2 + padding,
         y1: y - h / 2 - padding,
@@ -500,8 +500,6 @@ function checkIfOverlaps(node, padding) {
         let w = neighbor.renderedOuterWidth();
         let h = neighbor.renderedOuterHeight();
         let neighborBB = {
-            // w: neighbor.renderedOuterWidth(),
-            // h: neighbor.renderedOuterHeight(),
             x1: x - w / 2 - padding,
             x2: x + w / 2 + padding,
             y1: y - h / 2 - padding,
@@ -533,7 +531,7 @@ async function add_node() {
 
 
   if (node_classes.value === 'Выбор...') {
-    alert('Не выбран тип для узла!');
+    // alert('Не выбран тип для узла!');
     return;    
   }
 
@@ -554,23 +552,23 @@ async function addNodeExt() {
   let name = node_name.value;
 
   if (elem.length > 1) {
-    alert('Выбрано больше одного узла!');
+    // alert('Выбрано больше одного узла!');
     return; 
   }
 
   if (node_classes.value === elem.data("classes")) {
-    alert('Добавление узла выбранного типа запрещено!');
+    // alert('Добавление узла выбранного типа запрещено!');
     return;    
   }
 
   if (node_classes.value === 'node' && elem.length === 0 ) {    
-    alert('Добавление порта в не устройства запрещено!');
+    // alert('Добавление порта в не устройства запрещено!');
     return;    
   }
 
   if (node_classes.value === 'node' && elem.classes()[0] != 'unit' ) {
     console.log('classes', elem.classes()[0]);
-    alert('Добавление порта для выбранного типа узла запрещено!');
+    // alert('Добавление порта для выбранного типа узла запрещено!');
     return;    
   }
 
@@ -812,7 +810,7 @@ async function mod_node() {
   elem = cy.nodes(':selected');
 
   if (elem.length > 1) {
-    alert('Выбрано больше одного узла!');
+    // alert('Выбрано больше одного узла!');
     return; 
   }
   
@@ -825,7 +823,7 @@ async function mod_node() {
   }
     
   if (node_parentId.value==elemParentId) {
-    console.log('>>Обновление устройства...');
+    // console.log('>>Обновление устройства...');
     const data =  {            
       'id'        : elem.data("id"),    
       'parent'    : elemParentId,
@@ -838,11 +836,11 @@ async function mod_node() {
     elem.data("name",node_name.value);
     elem.data("descr",node_descr.value); 
   } else {  
-    console.log('>>Перемещение устройства...');    
+    // console.log('>>Перемещение устройства...');    
     if (classes[0] === 'unit') {     
       await moveNode(elem);
     } else {
-      alert('Перемещение данного типа невозможно!');
+      // alert('Перемещение данного типа невозможно!');
       return;
     }
   }
@@ -900,7 +898,7 @@ async function copy_node() {
  
   // cy.center(elem);
       
-  _status.value = '>> Узел ' + elem.data("name") +' скопирован';
+  // _status.value = '>> Узел ' + elem.data("name") +' скопирован';
 
   if (n > 0) {
     for (let child of children) {
@@ -940,7 +938,7 @@ async function delete_node(){
     let classes = ele.classes();    
     if (classes[0] === 'station') {
       console.log(ele); 
-      alert('Недоступно удаление узлов станций интерактивно!');
+      // alert('Недоступно удаление узлов станций интерактивно!');
       return;
     } else {  
 
@@ -958,9 +956,9 @@ async function delete_node(){
   await async_clear_node_info();  
   await async_clear_edge_info();
 
-  node_classes.value = "Выбор...";
+  node_classes.value = "Select...";
 
-  _status.value = '>> Узел(ы) ' + names +' удален(ы)';
+  // _status.value = '>> Узел(ы) ' + names +' удален(ы)';
   
 }
 // Edges //////////////////////////////////////////////////////////////////
@@ -985,7 +983,7 @@ async function add_edge() {
     line = '';
 
     if (edge_classes.value === 'Выбор...') {
-      alert('Не выбран тип для связи!');
+      // alert('Не выбран тип для связи!');
       return;    
     }
   }       
@@ -1047,7 +1045,7 @@ async function mod_edge() {
 
   cy.autounselectify( false );
 
-  _status.value     = '>> Связь '+elem.data("source")+ '-' +elem.data("target")+ ' обновлена';
+  _status.value     = '>> '+elem.data("source")+ '-' +elem.data("target")+ ' обновлена';
 }
 async function delete_edge(){
   console.log('>>delete_edge()...');
@@ -1208,52 +1206,6 @@ async function initCy() {
   async function updateBind(f) {
     console.log('>>updateBind()...', f);
   
-    if (f===1) {
-      // elements = await updateCy();
-    
-      // cy.data({ elements: elements.data });
-      // cy.elements().remove(); 
-      // cy.elements = elements;      
-      // cy.json({ elements: elements });
-      // for (ele of elements) {
-      //    cy.data({ data: ele.data });      
-      // } 
-    }
-
-    // let active_edges = cy.edges('.fiber');
-    // let active_nodes = cy.nodes('.node');
-
-    // borderColor = 'DodgerBlue';
-    // nodeColor   = 'DodgerBlue';
-
-    // active_edges.targets().style('border-color', borderColor);    
-    // active_edges.sources().style('border-color', borderColor);            
-
-    // for (let node of active_nodes) {         
-    //   if (node.data("classes")==='node') {
-    //     let link = node.data("link");    
-    //     let status = node.data("status");      
-    //     if (link==='Up'&&status==='OK') {
-    //       nodeColor = 'Green';
-    //     } else if (link==='Up'&&status==='Warning') {
-    //       nodeColor = 'Orange';  
-    //     } else if (link==='Up'&&status==='Unknown') {
-    //       nodeColor = 'Orange';
-    //     } else if (link==='Up'&&status==='Alarm') {
-    //       nodeColor = 'Red';
-    //     } else if (link==='Down') {
-    //       nodeColor = 'Red';
-    //     } else if (link==='Unknown') {
-    //       nodeColor = 'Violet';
-    //     } else if (link==='AdmDown') {
-    //       nodeColor = 'Grey';
-    //     } else {
-    //       continue;
-    //     }
-    //     node.style('border-color', nodeColor);   
-    //     // nodeColor   = 'DodgerBlue';
-    //   }
-    // }
   }
   function bindRouters() {
     console.log('>>bindRouters()...');
@@ -1343,7 +1295,7 @@ async function initCy() {
       let mod = columnLeft.getAttribute("mod");
      
       if (mod === 'true') { 
-        alert("Существует не сохраненный элемент!");
+        // alert("Существует не сохраненный элемент!");
         cy.autounselectify( true );
         return;
       } else {
@@ -1424,7 +1376,7 @@ async function initCy() {
       let mod = columnLeft.getAttribute("mod");
 
       if (mod === 'true') { 
-        alert("Существует не сохраненный элемент!");
+        // alert("Существует не сохраненный элемент!");
         cy.autounselectify( true );
         return;
       } else {
@@ -1440,7 +1392,7 @@ async function initCy() {
         edge_descr.value  = edge.data("descr");   
         edge_name.value   = edge.data("name");             
         
-        _status.value      = '>> Cвязь узлов ' + edge_source.value + '-' + edge_target.value;
+        _status.value      = '>> Edge ' + edge_source.value + '-' + edge_target.value;
       }
     });
 
@@ -1456,45 +1408,12 @@ async function initCy() {
       edge_descr.value  = edge.data("name");
       edge_length.value = edge.data("length");
       
-      _status.value = '>> Линия ' + edge.data("name") + ', ' + edge.source().data("name") + ' - ' + edge.target().data("name");
+      _status.value = '>> ' + edge.data("name") + ', ' + edge.source().data("name") + ' - ' + edge.target().data("name");
 
     });
 
     cy.on('cxttap', 'edge', async function(e){
       let edge = await e.target;    
-
-      // clear_node_info();
-      // clear_edge_info();
-            
-      // edge_classes.value = "Выбор...";
-      // edge_source.value = edge.source().data("name");      
-      // edge_target.value = edge.target().data("name");
-      // let name   = edge.data("name");
-      // let length = edge.data("length");
-      // let fiber  = edge.data("fiber");
-      
-      // _status.value = '>> Связь ' +name + ', ' + edge.source().data("name") + ' - ' + edge.target().data("name");
-
-      // const btn = document.createElement('div');
-      // btn.classList.add("btn", "btn-secondary");
-      // btn.setAttribute("data-bs-toggle", "popover");
-      // btn.setAttribute("title", "Описание:");
-      // btn.setAttribute("data-bs-content", 'Волокон: ' +fiber + 'шт., Длина:'+ length + ' м.');
-      // btn.innerText = 'button';
-      // $body.appendChild(btn);  
-
-      //let div = document.createElement('div');
-      //popover = new bootstrap.Popover(div);
-      // div.setAttribute("data-bs-container","body" );
-      // div.setAttribute("data-bs-toggle", "popover");
-      //div.setAttribute("title", "Описание:");
-      //div.setAttribute("data-bs-content", 'Волокон: ' +fiber +  'шт., Длина:'+ length + ' м.');
-      // div.innerHTML = 'Волокон: ' +fiber + 'шт., Длина:'+ length + ' м.'; 
-      //document.body.appendChild(div);  
-
-      //await edge.popper({content: div});  
-
-      //popover.show();   
 
     });
 
@@ -1556,30 +1475,6 @@ async function initCy() {
 
     });
 
-    cy.on('dbltap', 'node.station', async function(e){
-      let node = await e.target;
-     
-      node_classes.value = "Выбор...";
-      node_name.value    = node.data("name");
-
-      if (node.locked()){                
-        node.unlock();                        
-      } else {                
-        node.lock();                                
-      }              
-             
-      for(let ele of node.children()) {        
-        if (ele.visible()) {                     
-          ele.style('display', 'none');               
-        } else if (ele.hidden()) {          
-          ele.style('display', 'element');                
-        }
-      }                   
-
-      _status.value = '>> Cтанция '  + node.data("name") + ' (линия ' + node.data("descr") + ')';
-
-    });
-
     cy.on('dbltap', 'edge.submagistral',async function(e){
       let edge = e.target;    
       
@@ -1601,7 +1496,7 @@ async function initCy() {
       
       await show_modal_fibers_table(sourceId, targetId);         
 
-      _status.value      = '>> Cвязь узлов ' + edge_source.value + '-' + edge_target.value;
+      _status.value      = '>> ' + edge_source.value + '-' + edge_target.value;
 
     });
 
@@ -1648,35 +1543,10 @@ async function initCy() {
         }
       }  
       
-      _status.value = '>> Линия ' + edge.data("name") + ', ' + edge.source().data("name") + ' - ' + edge.target().data("name");
+      _status.value = '>> ' + edge.data("name") + ', ' + edge.source().data("name") + ' - ' + edge.target().data("name");
 
     });
 
-    cy.on('tap', 'node.station', async function(e) {
-      let node = await e.target;
-      
-      node_classes.value   = "Выбор...";
-
-      let elem = cy.nodes('node.station:selected');    
-      if (elem.length > 1) {  
-        
-        let  name_source = elem[0];
-        edge_target.value = name_source.data("name"); 
-
-        let name_target = elem[elem.length-1];        
-        edge_source.value = name_target.data("name");
-                   
-      } else {
-        edge_source.value = node.data("name");
-      }
-      
-      const a = document.createElement('div');                    
-      a.setAttribute("title", node.data("name"));    
-      a.setAttribute("data-bs-placement", "bottom");                     
-
-      _status.value = '>> Cтанция '  + node.data("name") + ' (линия ' + node.data("descr") + ')';
-      
-    });
   
     cy.on('cxttap', 'node.node', function(e) {
       let node = e.target;            
@@ -1686,12 +1556,12 @@ async function initCy() {
       const start = document.createElement('button');
       start.classList.add("btn", "btn-secondary");
       start.setAttribute("id", "start");
-      start.innerText = 'СТАРТ';   
+      start.innerText = 'Start';   
 
       const end = document.createElement('button');
       end.classList.add("btn", "btn-secondary");
       end.setAttribute("id", "end");
-      end.innerText = 'ФИНИШ';              
+      end.innerText = 'End';              
 
       if (s === 0 && ms === 0) {  
         makeTippy(node, start);   
@@ -1744,34 +1614,7 @@ async function initCy() {
       backClear();
     }
   }
-  function restoreSavedPath() {
-    console.log('restoreSavedPath');
 
-    // Из localStorage вежливо берем данные маршута
-    let savedPath = localStorage.getItem('savedPath');
-    if (savedPath) {
-      savedPath = JSON.parse(savedPath);
-      // Restore classes for the saved path
-      cy.$(savedPath).addClass('saved-path');
-      
-      // Для начальной ноды 
-      if (savedPath.length > 0) {
-        let startNode = cy.getElementById(savedPath[0]);
-        startNode.addClass('start');
-      }
-  
-      // Для конечной
-      if (savedPath.length > 1) {
-        let endNode = cy.getElementById(savedPath[savedPath.length - 1]);
-        endNode.addClass('end');
-      }
-  
-      console.log(cy.elements());
-    }
-  }
-
-  // Вызов функции при загрузке страницы
-  window.addEventListener('load', restoreSavedPath());
   bindRouters();
   
   // setInterval(await updateBind(1), 60000);
