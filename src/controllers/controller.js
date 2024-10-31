@@ -674,7 +674,7 @@ exports.upload = async function(req, res) {
     // console.log(JSON.stringify(data));  
     const access_token = req.body.access_token;
 
-    if (!access_token =='ewffvbjkyu76445wsjjhydtawAW') {
+    if (!access_token =='token') {
         return await res.json("access_token error!");
     }
     
